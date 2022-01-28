@@ -20,10 +20,10 @@
 }
 
 .banner__searchButton {
-    background-color: white;
-    font-weight: 900;
-    text-transform: inherit;
-    color: #ff7779;
+    background-color: white !important;
+    font-weight: 900 !important;
+    text-transform: inherit !important;
+    color: #ff7779 !important;
 }
 
 .banner__info > button {

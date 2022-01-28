@@ -1,21 +1,22 @@
 import React, { useState } from "react";
 import "./Banner.css";
 import Button from "@mui/material/Button";
+import DatePicker from "./DatePicker";
 
 function Banner() {
-  const [showSearch, setShowSearch] = useState(true);
+  const [showSearch, setShowSearch] = useState(false);
 
   return (
     <div className="banner">
       <div className="banner__search">
-        {showSearch && <Search />}
+        {showSearch && <DatePicker />}
 
         <Button
           onClick={() => setShowSearch(!showSearch)}
-          className="banner_searchButton"
+          className="banner__searchButton"
           variant="outlined"
         >
-          Search Dates
+          {showSearch ? "Hide" : "Search Dates"}
         </Button>
       </div>
       <div className="banner__info">
