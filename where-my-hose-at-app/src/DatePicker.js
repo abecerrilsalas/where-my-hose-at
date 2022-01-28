@@ -30,7 +30,7 @@ function DatePicker() {
         onChange={handleSelect}
       ></DateRangePicker>
 
-      <Button>Search driveways</Button>
+      <Button>Search WhereMyHoseAt</Button>
     </div>
   );
 }

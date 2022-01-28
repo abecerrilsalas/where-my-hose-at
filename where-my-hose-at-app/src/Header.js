@@ -2,6 +2,8 @@ import React from "react";
 import "./Header.css";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LanguageIcon from '@mui/icons-material/Language';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 function Header() {
   return (
@@ -13,7 +15,9 @@ function Header() {
       </div>
 
       <div className="header__right">
-        <p>Rent a driveway</p>
+        <LanguageIcon />
+        <ExpandMoreIcon />
+        <p>Share your driveway</p>
         <AccountCircleIcon />
       </div>
     </div>
