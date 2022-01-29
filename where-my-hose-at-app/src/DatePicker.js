@@ -6,9 +6,10 @@ import "react-date-range/dist/theme/default.css";
 // theme css file
 import { DateRangePicker } from "react-date-range";
 import Button from "@mui/material/Button";
-// import PeopleIcon from "@mui/icons-material/People";
+import { useNavigate } from "react-router-dom";
 
 function DatePicker() {
+  const navigate = useNavigate();
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
@@ -30,7 +31,7 @@ function DatePicker() {
         onChange={handleSelect}
       ></DateRangePicker>
 
-      <Button>Search WhereMyHoseAt</Button>
+      <Button onClick={() => navigate("/search")}>Search WhereMyHoseAt</Button>
     </div>
   );
 }
