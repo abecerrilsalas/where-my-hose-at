@@ -1,15 +1,15 @@
 import React from "react";
-import "./Home.css";
+import "./Landing.css";
 import Banner from "./Banner";
 import Card from "./Card";
 
-function Home() {
+function Landing() {
   return (
-    <div className="home">
+    <div className="landing">
       {/* <h1>Home Component</h1> */}
 
       <Banner />
-      <div className="home__section">
+      <div className="landing__section">
         <Card
           src="https://media.angi.com/s3fs-public/driveway-modern-home.jpeg"
           title="Normal driveway"
@@ -26,7 +26,7 @@ function Home() {
           description="Night owls welcome, please bring your paranormal experiments"
         />
       </div>
-      <div className="home__section">
+      <div className="landing__section">
         <Card
           src="https://i.pinimg.com/originals/86/c0/90/86c090efc59e3dbaf1f7fb7ca75c33d7.jpg"
           title="Beautiful desert driveway"
@@ -47,4 +47,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Landing;
