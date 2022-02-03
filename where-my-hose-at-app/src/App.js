@@ -9,7 +9,9 @@ import SearchPage from "./components/SearchPage";
 import Form from "./components/common/Form";
 import Home from "./components/Home";
 
-import { app } from "./firebase-config";
+
+import { app, db } from "./firebase-config";
+import { collection, addDoc } from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -18,9 +20,22 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 
-function App() {
+const usersCollection = collection(db, 'users');
+
+async function addNewDoc() {
+  const newDoc = await addDoc(usersCollection, {
+    firstName: 'arthur',
+    lastName: 'king',
+  });
+  console.log(`you did it! ${newDoc.path}`);
+}
+
+// addNewDoc();
+
+function App() {  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   let navigate = useNavigate();
   const handleAction = (id) => {
     const authentication = getAuth();
@@ -52,7 +67,7 @@ function App() {
           );
         })
         .catch((error) => {
-          if (error.code === "auth/email-already-in-use") {
+          if (error.code === "auth/email-already-exists") {
             toast.error("Email Already in Use");
           }
         });
