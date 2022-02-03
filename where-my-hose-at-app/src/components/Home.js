@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Home() {
-  // const handleLogout = () => {
-  //     sessionStorage.removeItem('Auth Token');
-  //     navigate('/login')
-  // }
+  const handleLogout = () => {
+    sessionStorage.removeItem("Auth Token");
+    navigate("/login");
+  };
+
   let navigate = useNavigate();
   useEffect(() => {
     let authToken = sessionStorage.getItem("Auth Token");
@@ -17,11 +18,11 @@ export default function Home() {
     if (!authToken) {
       navigate("/login");
     }
-  }, []);
+  });
   return (
     <div>
       Home Page
-      {/* <button onClick={handleLogout}>Log out</button> */}
+      <button onClick={handleLogout}>Log out</button>
     </div>
   );
 }
