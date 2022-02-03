@@ -9,7 +9,6 @@ import SearchPage from "./components/SearchPage";
 import Form from "./components/common/Form";
 import Home from "./components/Home";
 
-
 import { app, db } from "./firebase-config";
 import { collection, addDoc } from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
@@ -20,19 +19,19 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 
-const usersCollection = collection(db, 'users');
+// const usersCollection = collection(db, "users");
 
-async function addNewDoc() {
-  const newDoc = await addDoc(usersCollection, {
-    firstName: 'arthur',
-    lastName: 'king',
-  });
-  console.log(`you did it! ${newDoc.path}`);
-}
+// async function addNewDoc() {
+//   const newDoc = await addDoc(usersCollection, {
+//     firstName: "king",
+//     lastName: "arthur",
+//   });
+//   console.log(`YOU did it! ${newDoc.path}`);
+// }
 
 // addNewDoc();
 
-function App() {  
+function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
