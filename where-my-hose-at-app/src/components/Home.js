@@ -18,7 +18,7 @@ export default function Home() {
     if (!authToken) {
       navigate("/login");
     }
-  });
+  }, [navigate]);
   return (
     <div>
       Home Page

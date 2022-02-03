@@ -67,7 +67,7 @@ function App() {
           );
         })
         .catch((error) => {
-          if (error.code === "auth/email-already-exists") {
+          if (error.code === "auth/email-already-in-use") {
             toast.error("Email Already in Use");
           }
         });
@@ -80,7 +80,7 @@ function App() {
     if (authToken) {
       navigate("/home");
     }
-  }, []);
+  }, [navigate]);
   return (
     <div className="app">
       <ToastContainer />
