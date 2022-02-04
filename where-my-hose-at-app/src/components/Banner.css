@@ -1,5 +1,9 @@
 .banner {
-    background: url("https://www.byhyu.com/uploads/4/7/3/7/47371935/driveway-17_orig.jpg") center center;
+    /* background: url("/public/banner_driveway2.jpg") center center; */
+    /* background: url("/public/banner_driveway3.jpg") center 65%; */
+    /* background: url("/public/banner_driveway4.jpg") center 45%; */
+    background: url("/public/banner_driveway5.jpg") center 67%;
+
     height: 50vh;
     position: relative;
 }
@@ -7,7 +11,7 @@
 .banner__info {
     background-color: black;
     color: white;
-    padding-top: 25vh;
+    padding-top: 14vh;
     padding-left: 50px;
     padding-right: 50px;
     padding-bottom: 40px;
