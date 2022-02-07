@@ -9,11 +9,11 @@ import SearchPage from "./components/SearchPage";
 import Form from "./components/common/Form";
 import Home from "./components/Home";
 
-import { app, db } from "./firebase-config";
+import { app, db, useAuth } from "./firebase-config";
 import { collection, addDoc } from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
+import { 
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -34,6 +34,7 @@ import {
 function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const currentUser = useAuth();
 
   let navigate = useNavigate();
   const handleAction = (id) => {
