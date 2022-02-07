@@ -1,12 +1,16 @@
-import React from "react";
 import "./Header.css";
-import SearchIcon from "@mui/icons-material/Search";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import LanguageIcon from "@mui/icons-material/Language";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import LoginDisplay from "./LoginDisplay"
+import React from "react";
 import { Link } from "react-router-dom";
 
+import SearchIcon from "@mui/icons-material/Search";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+
 function Header() {
+  const handlePageChange  = () => {
+    window.location.href="/home"
+    }
+
   return (
     <div className="header">
       <Link to="/">
@@ -19,10 +23,8 @@ function Header() {
       </div>
 
       <div className="header__right">
-        <p>Share your driveway</p>
-        <LanguageIcon />
-        <ExpandMoreIcon />
-        <AccountCircleIcon />
+        <LoginDisplay />
+        <AccountCircleIcon onClick={handlePageChange} />
       </div>
     </div>
   );
