@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import LanguageIcon from "@mui/icons-material/Language";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 function Header() {
+  const handlePageChange  = () => {
+    window.location.href="/home"
+    }
+
   return (
     <div className="header">
       <Link to="/">
@@ -22,9 +24,7 @@ function Header() {
 
       <div className="header__right">
         <LoginDisplay />
-        <LanguageIcon />
-        <ExpandMoreIcon />
-        <AccountCircleIcon />
+        <AccountCircleIcon onClick={handlePageChange} />
       </div>
     </div>
   );

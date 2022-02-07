@@ -13,7 +13,7 @@ const UserDisplayLogin = () => {
     let authToken = sessionStorage.getItem("Auth Token");
 
     if (user && authToken) {
-        return <p>Welcome, {user.email}</p>;
+        return <p>Welcome, {user.email}!</p>;
     } else {
         return <p><a href="/login">Login</a> / <a href="/register">Register</a></p>
     }

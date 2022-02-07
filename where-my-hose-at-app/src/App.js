@@ -73,13 +73,17 @@ function App() {
     }
   };
 
-  useEffect(() => {
-    let authToken = sessionStorage.getItem("Auth Token");
 
-    if (authToken) {
-      navigate("/home");
-    }
-  }, [navigate]);
+  // maybe we don't need this logic because we want our users to be able to use the site and not have to go /home all the time? 
+  
+  // useEffect(() => {
+  //   let authToken = sessionStorage.getItem("Auth Token");
+
+  //   if (authToken) {
+  //     navigate("/home");
+  //   }
+  // }, [navigate]);
+
   return (
     <div className="app">
       <ToastContainer />
