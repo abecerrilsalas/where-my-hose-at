@@ -91,7 +91,7 @@ function App() {
           path="/login"
           element={
             <Form
-              title="Login"
+              title="Log in"
               setEmail={setEmail}
               setPassword={setPassword}
               handleAction={() => handleAction(1)}

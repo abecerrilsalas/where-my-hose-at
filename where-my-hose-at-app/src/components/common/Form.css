@@ -1,0 +1,16 @@
+.heading-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.form-content {
+    display: flex;
+    justify-content: center;
+}
+
+.button-content {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
+}
