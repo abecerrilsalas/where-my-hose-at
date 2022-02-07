@@ -2,7 +2,6 @@ import "./Header.css";
 import LoginDisplay from "./LoginDisplay"
 import React from "react";
 import { Link } from "react-router-dom";
-import { getAuth } from "firebase/auth";
 
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
