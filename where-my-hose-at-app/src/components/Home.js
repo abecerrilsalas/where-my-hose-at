@@ -5,6 +5,7 @@ import { useAuth, upload } from "../firebase-config";
 
 // import { getAuth, onAuthStateChanged } from "firebase/auth";
 // import { app, db } from "../firebase-config";
+import { db } from "../firebase-config";
 import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 // import { db } from "./firebase-config";
 
@@ -28,8 +29,8 @@ export default function Home() {
   }, [navigate]);
 
   const currentUser = useAuth();
-  const firstName = useState("");
-  const lastName = useState("");
+  // const firstName = useState("");
+  // const lastName = useState("");
   const [photo, setPhoto] = useState(null);
   const [loading, setLoading] = useState(false);
   const [photoURL, setPhotoURL] = useState(
@@ -43,7 +44,7 @@ export default function Home() {
   }
 
   function handleClick() {
-    upload(photo, currentUser, setLoading, firstName, lastName);
+    upload(photo, currentUser, setLoading);
   }
 
   useEffect(() => {
@@ -52,14 +53,17 @@ export default function Home() {
     }
   }, [currentUser]);
 
-  // const handleNew = async () => {
-  //   const firstName = prompt("Enter first name");
-  //   const lastName = prompt("Enter last name");
+  const handleNewName = async () => {
+    const firstName = prompt("Enter first name");
+    const lastName = prompt("Enter last name");
 
-  //   const collectionRef = collection("user");
-  //   const payload = { firstName, lastName };
-  //   const docRef = await addDoc(collectionRef, payload);
-  // };
+    const collectionRef = collection(db, "users");
+
+    const payload = { firstName, lastName };
+    const docRef = await addDoc(collectionRef, payload);
+    console.log(firstName);
+    setDoc(docRef, payload);
+  };
 
   const handleEdit = async (id) => {
     const firstName = prompt("Enter first name");
@@ -69,9 +73,19 @@ export default function Home() {
     const payload = { firstName, lastName };
     // console.log(firstName);
     // console.log(lastName);
-
+    console.log(firstName);
+    console.log(lastName);
     setDoc(docRef, payload);
   };
+
+  // const nameDisplay = async () => {
+  //   // const collectionRef = collection(db, "users");
+  //   const firstName =
+  //   // const payload = { firstName, lastName };
+  //   // const docRef = await addDoc(collectionRef, payload);
+  //   // console.log(firstName);
+  //   // setDoc(docRef, payload);
+  // };
   //   function LoginDisplayHome() {
   //     return <UserDisplayLoginHome />;
   // }
@@ -90,16 +104,20 @@ export default function Home() {
   return (
     <div>
       Home Page
-      <p>{currentUser?.firstName}Profile</p>
+      {/* <p>{currentUser?.firstName}Profile</p> */}
+      <div>Fox Mulder's Profile</div>
+      {/* <p>{firstName + lastName}'s Profile</p> */}
       <div className="home__form">
         <input type="file" onChange={handleChange} />
         <button disabled={loading || !photo} onClick={handleClick}>
           Upload
         </button>
         <img src={photoURL} alt="avatar" className="avatar" />
-        {/* <p>Welcome, {currentUser.email}!</p> */}
         {/* <p>{currentUser?.firstName}</p> */}
-        <button onClick={handleEdit}>edit name</button>
+        <button onClick={handleNewName}>Add name</button>
+        <button onClick={handleEdit}>edit profile</button>
+        {/* <p> {currentUser.email}!</p> */}
+        {/* <p> {currentUser?.firstName}</p> */}
       </div>
       <button onClick={handleLogout}>Log out</button>
     </div>
