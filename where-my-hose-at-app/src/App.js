@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import SearchPage from "./components/SearchPage";
 import Form from "./components/common/Form";
 import Home from "./components/Home";
+import NewListing from "./components/NewListing"
 
 import { app, db, useAuth } from "./firebase-config";
 import { collection, addDoc } from "firebase/firestore";
@@ -114,6 +115,7 @@ function App() {
             />
           }
         />
+        <Route path="/newlisting" element={<NewListing />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/" element={<Landing />} />
       </Routes>
