@@ -2,7 +2,7 @@
 
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged, updateProfile } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, getDocs, collection } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
@@ -58,3 +58,23 @@ export async function upload(file, currentUser, setLoading){
   alert("Upload file!");
 
 }
+
+// get listings
+export const getListings = async () => {
+  const listingsSnapshot = await getDocs(collection(db, "listings"));
+  const listingsList = listingsSnapshot.docs.map((doc) => doc.data());
+  return listingsList;
+};
+
+
+// useEffect (use side effect) takes function
+// pass async function to useEffect that awaits getListings function
+// inside 
+
+//that function can call network, when gets result from firestore, it can call
+//setState
+//when ^ gets called, state gets updated, lets react re-render
+
+//make card able to tkae an object that has title, object, descriptoin, and then you can pass them as props to card
+// listings.map // turn landing section class into a flexbox that is horizontally
+// gives cards a min width and let flexbox figure it out

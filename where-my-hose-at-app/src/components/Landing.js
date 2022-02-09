@@ -1,12 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Landing.css";
 import Banner from "./Banner";
 import Card from "./Card";
 
+import { query, orderBy, limit, collection, getDocs } from "firebase/firestore";  
+import { db, getListings } from "../firebase-config";
+
 function Landing() {
+
+  // const listingsRef = collection(db, "listings")
+  // const q = query(listingsRef, orderBy("time", "desc"), limit(3));
+  // console.log(q)
+
+  // const getListings = async () => {
+  //   const listingsSnapshot = await getDocs(collection(db, "listings"));
+  //   const listingsList = listingsSnapshot.docs.map((doc) => doc.data());
+  //   return listingsList;
+  // };
+  
+  const [listings, setListings] = useState([])
+
+  useEffect(() => {
+    const loadListings = async () => {
+      const userListings = await getListings();
+      setListings(userListings);
+    };
+    loadListings();
+  }, []);
+
+  console.log(listings)
+
   return (
     <div className="landing">
-      {/* <h1>Home Component</h1> */}
 
       <Banner />
       <div className="landing__section">
@@ -48,3 +73,6 @@ function Landing() {
 }
 
 export default Landing;
+
+
+
