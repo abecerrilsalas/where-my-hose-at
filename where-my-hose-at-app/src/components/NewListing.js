@@ -10,6 +10,7 @@ export default function NewListing () {
     const currentUser = useAuth();
     const collectionRef = collection(db, "listings");
     const [photo, setPhoto] = useState(null);
+    const [loading, setLoading] = useState(false);
     const [photoURL, setPhotoURL] = useState('https://pbs.twimg.com/profile_images/1342768807891378178/8le-DzgC_400x400.jpg');
 
     const [formFields, setFormFields] = useState ({
@@ -37,12 +38,15 @@ export default function NewListing () {
             setPhoto(event.target.files[0])
         }
 
+        setLoading(true);
+
         const file = event.target.files[0]
         const storage = getStorage()
         const fileRef = ref(storage, 'listings/listing_' + currentUser.uid)
         await uploadBytes(fileRef, file)
     
         setPhotoURL(await getDownloadURL(fileRef))
+        setLoading(false);
         console.log('Uploaded file!')
     };
 
@@ -81,7 +85,7 @@ export default function NewListing () {
                         <input type="file" onChange={onFileChange} />
                     </div>
                     <input
-                        disabled={!photo}
+                        disabled={loading || !photo}
                         type="submit"
                         value="Submit" />
                 </form>
