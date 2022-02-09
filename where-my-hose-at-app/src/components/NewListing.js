@@ -4,14 +4,18 @@ import { useState } from "react";
 
 import { db, useAuth } from "../firebase-config";
 import { collection, addDoc } from "firebase/firestore";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export default function NewListing () {
     const currentUser = useAuth();
     const collectionRef = collection(db, "listings");
+    const [photo, setPhoto] = useState(null);
+    const [photoURL, setPhotoURL] = useState('https://pbs.twimg.com/profile_images/1342768807891378178/8le-DzgC_400x400.jpg');
 
     const [formFields, setFormFields] = useState ({
         title: '',
-        description: ''
+        description: '',
+        image: ''
     });
 
     const onTitleChange = (event) => {
@@ -28,10 +32,24 @@ export default function NewListing () {
         })
     };
 
+    const onFileChange = async (event) => {
+        if(event.target.files[0]){
+            setPhoto(event.target.files[0])
+        }
+
+        const file = event.target.files[0]
+        const storage = getStorage()
+        const fileRef = ref(storage, 'listings/listing_' + currentUser.uid)
+        await uploadBytes(fileRef, file)
+    
+        setPhotoURL(await getDownloadURL(fileRef))
+        console.log('Uploaded file!')
+    };
+
     const onFormSubmit = async (event) => {
         event.preventDefault();
         
-        const payload = { title: formFields.title, description: formFields.description, host_id: currentUser.uid };
+        const payload = { title: formFields.title, description: formFields.description, host_id: currentUser.uid, image: photoURL };
 
         const docRef = await addDoc(collectionRef, payload);
         console.log("The ID for new listing is: " + docRef.id);
@@ -59,7 +77,11 @@ export default function NewListing () {
                             value={formFields.description}
                             onChange={onDescriptionChange} />
                     </div>
+                    <div>
+                        <input type="file" onChange={onFileChange} />
+                    </div>
                     <input
+                        disabled={!photo}
                         type="submit"
                         value="Submit" />
                 </form>
