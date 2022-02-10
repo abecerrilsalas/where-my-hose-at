@@ -1,12 +1,14 @@
 import "./NewListing.css";
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { db, useAuth } from "../firebase-config";
 import { collection, addDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export default function NewListing () {
+    const navigate = useNavigate();
     const currentUser = useAuth();
     const collectionRef = collection(db, "listings");
     const [photo, setPhoto] = useState(null);
@@ -57,6 +59,7 @@ export default function NewListing () {
 
         const docRef = await addDoc(collectionRef, payload);
         console.log("The ID for new listing is: " + docRef.id);
+        navigate("/home");
     };
     
     return (
