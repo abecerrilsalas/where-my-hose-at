@@ -36,7 +36,7 @@ export default function Home() {
   const currentUser = useAuth();
   const auth = getAuth();
   const user = auth.currentUser;
-  const uid = useState(user.uid);
+  // const uid = useState(user.uid);
   const [photo, setPhoto] = useState(null);
   const [loading, setLoading] = useState(false);
   const [photoURL, setPhotoURL] = useState(
@@ -50,7 +50,7 @@ export default function Home() {
   }
 
   function handleClick() {
-    upload(photo, currentUser, setLoading, uid);
+    upload(photo, currentUser, setLoading);
   }
 
   useEffect(() => {

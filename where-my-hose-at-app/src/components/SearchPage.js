@@ -1,9 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./SearchPage.css";
 import Button from "@mui/material/Button";
 import SearchResult from "./SearchResult";
 
+import { getListings } from "../firebase-config";
+
 function SearchPage() {
+  
+  const [listings, setListings] = useState([])
+
+  useEffect(() => {
+    const loadListings = async () => {
+      const userListings = await getListings();
+      setListings(userListings);
+    };
+    loadListings();
+  }, []);
+  
+  console.log(listings)
+
+  const getListingCards = listings.map((card) => {
+    return (
+      <SearchResult 
+        image={card.image}
+        title={card.title}
+        description={card.description}
+      />
+    );
+  });
+  
   return (
     <div className="searchPage">
       <div className="searchPage__info">
@@ -14,18 +39,7 @@ function SearchPage() {
         <Button variant="outlined">Flat surface</Button>
         <Button variant="outlined">More filters</Button>
       </div>
-      <SearchResult
-        img="https://i.pinimg.com/originals/70/3a/2d/703a2da61dd6331f0b474adbcceb6dc3.jpg"
-        title="Beautiful driveway for all your needs!"
-        description="Come on down and have a good time. We have plenty of tools!"
-        star={4.73}
-      />
-      <SearchResult
-        img="https://i.pinimg.com/originals/70/3a/2d/703a2da61dd6331f0b474adbcceb6dc3.jpg"
-        title="Beautiful driveway for all your needs!"
-        description="Come on down and have a good time. We have plenty of tools!"
-        star={4.73}
-      />
+      {getListingCards}
     </div>
   );
 }

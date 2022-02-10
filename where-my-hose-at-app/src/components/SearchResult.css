@@ -38,6 +38,7 @@
 .searchResult__infoTop > h3 {
     font-weight: 300;
     margin-top: 10px;
+    text-align: left;
 }
 
 .searchResult__infoTop > p {
