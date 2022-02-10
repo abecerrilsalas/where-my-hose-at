@@ -65,16 +65,3 @@ export const getListings = async () => {
   const listingsList = listingsSnapshot.docs.map((doc) => doc.data());
   return listingsList;
 };
-
-
-// useEffect (use side effect) takes function
-// pass async function to useEffect that awaits getListings function
-// inside 
-
-//that function can call network, when gets result from firestore, it can call
-//setState
-//when ^ gets called, state gets updated, lets react re-render
-
-//make card able to tkae an object that has title, object, descriptoin, and then you can pass them as props to card
-// listings.map // turn landing section class into a flexbox that is horizontally
-// gives cards a min width and let flexbox figure it out
