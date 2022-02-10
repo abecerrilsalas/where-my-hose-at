@@ -2,7 +2,7 @@
 
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged, updateProfile } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, getDocs, collection } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
@@ -43,9 +43,9 @@ export function useAuth() {
   return currentUser;
 }
 
-// storage
+// profile picture upload to Storage
 export async function upload(file, currentUser, setLoading){
-  const fileRef = ref(storage, currentUser.uid + '.png');
+  const fileRef = ref(storage, currentUser.uid);
 
   setLoading(true);
 
@@ -58,3 +58,10 @@ export async function upload(file, currentUser, setLoading){
   alert("Upload file!");
 
 }
+
+// get listings
+export const getListings = async () => {
+  const listingsSnapshot = await getDocs(collection(db, "listings"));
+  const listingsList = listingsSnapshot.docs.map((doc) => doc.data());
+  return listingsList;
+};
