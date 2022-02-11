@@ -2,7 +2,7 @@
 
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged, updateProfile } from "firebase/auth";
-import { getFirestore, getDocs, collection } from "firebase/firestore";
+import { getFirestore, where, getDoc, getDocs, collection, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
@@ -64,4 +64,13 @@ export const getListings = async () => {
   const listingsSnapshot = await getDocs(collection(db, "listings"));
   const listingsList = listingsSnapshot.docs.map((doc) => doc.data());
   return listingsList;
+};
+
+
+// get current rented driveway
+export const getCurrentDriveways = async (currentUser) => {
+  const q = query(collection(db, "listings"), where("renter_id", "==", currentUser.uid));
+  const drivewaysSnapshot = await getDocs(q);
+  const drivewaysList = drivewaysSnapshot.docs.map((doc) => doc.data());
+  return drivewaysList;
 };

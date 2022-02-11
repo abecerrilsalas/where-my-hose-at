@@ -2,12 +2,16 @@ import React, { useEffect, useState } from "react";
 import "./SearchPage.css";
 import Button from "@mui/material/Button";
 import SearchResult from "./SearchResult";
+import { useNavigate } from "react-router-dom";
 
-import { getListings, db } from "../firebase-config";
+import { getListings, db, useAuth } from "../firebase-config";
 import { doc, updateDoc } from "firebase/firestore";
 
 function SearchPage() {
-
+  const currentUser = useAuth();
+  
+  const navigate = useNavigate();
+  const [clickedListing, setClickedListing] = useState("")
   
   const [listings, setListings] = useState([])
 
@@ -19,21 +23,25 @@ function SearchPage() {
     loadListings();
   }, []);
   
-  // console.log(listings)
+  console.log(listings)
 
   const getListingCards = listings.map((card) => {
 
     const handleBooking = () => {
       const listingsRef = doc(db, "listings", "0CtwPj1wHLRdwOu0SGWE");
-      // console.log(card.available);
+      console.log(card.available);
       if (card.available == true) {
           updateDoc(listingsRef, {
-          available: false
-        });
+          available: false,
+          renter_id: currentUser.uid
+        })
+        console.log("You got it!");
+        navigate("/home");
       } else {
-          updateDoc(listingsRef, {
-          available: true
-          });
+          // updateDoc(listingsRef, {
+          // available: true
+          // });
+          console.log("Sorry, driveway is occupied.");
       }
     }
   
