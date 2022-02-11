@@ -25,11 +25,17 @@
     padding-left: 20px;
 }
 
-.searchResult__heart {
+.searchResult__car {
     position: absolute;
     top: 20px;
     right: 40px;
 }
+
+/* .searchResult__car {
+    position: absolute;
+    top: 55px;
+    right: 40px;
+} */
 
 .searchResult__infoTop {
     width: 40vw;

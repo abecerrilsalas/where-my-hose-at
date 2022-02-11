@@ -3,9 +3,11 @@ import "./SearchPage.css";
 import Button from "@mui/material/Button";
 import SearchResult from "./SearchResult";
 
-import { getListings } from "../firebase-config";
+import { getListings, db } from "../firebase-config";
+import { doc, updateDoc } from "firebase/firestore";
 
 function SearchPage() {
+
   
   const [listings, setListings] = useState([])
 
@@ -17,14 +19,31 @@ function SearchPage() {
     loadListings();
   }, []);
   
-  console.log(listings)
+  // console.log(listings)
 
   const getListingCards = listings.map((card) => {
+
+    const handleBooking = () => {
+      const listingsRef = doc(db, "listings", "0CtwPj1wHLRdwOu0SGWE");
+      // console.log(card.available);
+      if (card.available == true) {
+          updateDoc(listingsRef, {
+          available: false
+        });
+      } else {
+          updateDoc(listingsRef, {
+          available: true
+          });
+      }
+    }
+  
     return (
       <SearchResult 
         image={card.image}
         title={card.title}
         description={card.description}
+        available={card.available}
+        handleBooking={handleBooking}
       />
     );
   });
