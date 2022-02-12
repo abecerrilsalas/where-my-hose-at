@@ -1,5 +1,5 @@
 import "./Header.css";
-import LoginDisplay from "./LoginDisplay"
+import LoginDisplay from "./LoginDisplay";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -7,9 +7,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 function Header() {
-  const handlePageChange  = () => {
-    window.location.href="/home"
-    }
+  const handlePageChange = () => {
+    window.location.href = "/home";
+  };
 
   return (
     <div className="header">

@@ -8,13 +8,16 @@ import Footer from "./components/Footer";
 import SearchPage from "./components/SearchPage";
 import Form from "./components/common/Form";
 import Home from "./components/Home";
-import NewListing from "./components/NewListing"
+import NewListing from "./components/NewListing";
+import UpdateProfile from "./components/UpdateProfile";
+import Home2 from "./components/Home2";
+import Return from "./components/Return";
 
 import { app, db, useAuth } from "./firebase-config";
 import { collection, addDoc } from "firebase/firestore";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { 
+import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -75,9 +78,8 @@ function App() {
     }
   };
 
+  // maybe we don't need this logic because we want our users to be able to use the site and not have to go /home all the time?
 
-  // maybe we don't need this logic because we want our users to be able to use the site and not have to go /home all the time? 
-  
   // useEffect(() => {
   //   let authToken = sessionStorage.getItem("Auth Token");
 
@@ -115,7 +117,10 @@ function App() {
             />
           }
         />
+        <Route path="/home2" element={<Home2 />} />
+        <Route path="/return" element={<Return />} />
         <Route path="/newlisting" element={<NewListing />} />
+        <Route path="/updateprofile" element={<UpdateProfile />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/" element={<Landing />} />
       </Routes>
