@@ -48,6 +48,7 @@ function SearchPage() {
         description={card.description}
         available={card.available}
         handleBooking={handleBooking}
+        key={card.id}
       />
     );
   });
