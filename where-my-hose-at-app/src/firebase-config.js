@@ -59,13 +59,12 @@ export async function upload(file, currentUser, setLoading){
 // get listings
 export const getListings = async () => {
   const listingsSnapshot = await getDocs(collection(db, "listings"));
-  const listingsList = listingsSnapshot.docs.map((doc) => doc.data());
+  const listingsList = listingsSnapshot.docs.map((doc) => {return {...doc.data(), id: doc.id} });
   return listingsList;
 };
 
-
 // get current rented driveway doc ID
-export const getCurrentDriveways = async (currentuser) => {
+export const getRentedDriveway = async (currentuser) => {
   const q = query(collection(db, "listings"), where("renter_id", "==", currentuser.uid));
   const drivewaysSnapshot = await getDocs(q);
   const drivewaysList = drivewaysSnapshot.docs.map((doc) => doc.id);

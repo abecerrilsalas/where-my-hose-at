@@ -8,10 +8,6 @@ import EventBusyIcon from '@mui/icons-material/EventBusy';
 
 function SearchResult({ image, title, description, available, handleBooking}) {
 
-  // const handleBooking = () => {
-  //   console.log('Click happened');
-  // }
-
   return (
     <div className="searchResult">
       <img src={image} alt="" />

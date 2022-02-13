@@ -1,6 +1,6 @@
 import "./Return.css";
 import React, {useEffect, useState} from "react";
-import { useAuth, getCurrentDriveways, db } from "../firebase-config";
+import { useAuth, getRentedDriveway, db } from "../firebase-config";
 import { doc, updateDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
@@ -12,7 +12,7 @@ function Return( {currentuser} ) {
 
   useEffect(() => {
     const loadDriveways = async (currentuser) => {
-      const rentedDriveway = await getCurrentDriveways(currentUser);
+      const rentedDriveway = await getRentedDriveway(currentUser);
       setRentedID(rentedDriveway);
     };
     loadDriveways();
