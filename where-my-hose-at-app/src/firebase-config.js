@@ -2,7 +2,7 @@
 
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged, updateProfile } from "firebase/auth";
-import { getFirestore, where, getDoc, getDocs, collection, query } from "firebase/firestore";
+import { getFirestore, where, getDoc, getDocs, collection, query, updateDoc, doc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
@@ -68,9 +68,16 @@ export const getListings = async () => {
 
 
 // get current rented driveway
-export const getCurrentDriveways = async (currentUser) => {
-  const q = query(collection(db, "listings"), where("renter_id", "==", currentUser.uid));
+export const getCurrentDriveways = async (currentuser) => {
+  const q = query(collection(db, "listings"), where("renter_id", "==", currentuser.uid));
   const drivewaysSnapshot = await getDocs(q);
   const drivewaysList = drivewaysSnapshot.docs.map((doc) => doc.data());
   return drivewaysList;
+};
+
+export const handleReturn = async () => {
+  const docRef = doc(db, "listings", "0CtwPj1wHLRdwOu0SGWE");
+  const payload = { available: true, renter_id: null}
+  updateDoc(docRef, payload);
+  console.log('Driveway has been returned')
 };

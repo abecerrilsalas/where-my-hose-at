@@ -1,0 +1,24 @@
+.home__form {
+    font-size: 50px;
+    text-transform: capitalize;
+}
+
+.home__header {
+    font-size: 25px;
+    display: flex;
+}
+
+.home__contents {
+    font-size: 16px;
+    display: flex;
+}
+
+.avatar {
+    vertical-align: middle;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border-width: 5px;
+    border-color: gray;
+    border-style: outset;
+}

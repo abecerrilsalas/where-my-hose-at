@@ -1,18 +1,17 @@
 import "./Home.css";
+import UpdateProfile from "./UpdateProfile";
+import LoginDisplay from "./LoginDisplay";
+import Return from "./Return";
+
 import React, { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../firebase-config";
 
 export default function Home() {
   const currentUser = useAuth();
-  console.log(currentUser);
+  // console.log(currentUser);
 
   let navigate = useNavigate();
-
-  const handleLogout = () => {
-    sessionStorage.removeItem("Auth Token");
-    navigate("/login");
-  };
 
   useEffect(() => {
     let authToken = sessionStorage.getItem("Auth Token");
@@ -22,21 +21,32 @@ export default function Home() {
     }
   }, [navigate]);
 
-  return (
-    <div>
-      {/* <div>{currentUser.displayName}'s Profile</div> */}
+  // logic to Log Out
+  const handleLogout = () => {
+    sessionStorage.removeItem("Auth Token");
+    navigate("/login");
+  };
 
-      <ul>
-        <li>
-          <Link to="/updateprofile">Update Profile</Link>
-        </li>
-        <li>
-          <Link to="/return">Return Driveway</Link>
-        </li>
-        <li>
-          <button onClick={handleLogout}>Log out</button>
-        </li>
-      </ul>
+
+
+  return (
+    <div className="home__header">
+      Welcome <LoginDisplay />!
+
+      <div className="home__contents">
+        <ul>
+          <li>
+            <UpdateProfile currentuser={currentUser} />
+            
+          </li>
+          <li>
+            <Return currentuser={currentUser} />
+          </li>
+          <li>
+            <button onClick={handleLogout}>Log out</button>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 }
