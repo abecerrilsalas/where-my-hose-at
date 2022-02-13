@@ -27,7 +27,7 @@ function SearchPage() {
   const getListingCards = listings.map((card) => {
 
     const handleBooking = () => {
-      const listingsRef = doc(db, "listings", "0CtwPj1wHLRdwOu0SGWE");
+      const listingsRef = doc(db, "listings", card.id);
       // console.log(card.available);
       if (card.available == true) {
           updateDoc(listingsRef, {
