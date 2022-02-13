@@ -23,12 +23,12 @@ function Return( {currentuser} ) {
     const payload = { available: true, renter_id: null}
     updateDoc(docRef, payload);
     console.log('Driveway has been returned')
-    navigate("/")
+    navigate("/home")
   };
 
   return (
     <div>
-      <p>current {rentedID}</p>
+      <p>{rentedID}</p>
       <button onClick={() => handleReturn(rentedID)}>Return Driveway</button>
     </div>
   );

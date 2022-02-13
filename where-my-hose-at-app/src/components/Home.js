@@ -4,7 +4,7 @@ import LoginDisplay from "./LoginDisplay";
 import Return from "./Return";
 
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../firebase-config";
 
 export default function Home() {
@@ -36,11 +36,10 @@ export default function Home() {
       <div className="home__contents">
         <ul>
           <li>
-            <UpdateProfile currentuser={currentUser} />
-            
+            <Link to="/updateprofile">Update Profile</Link>
           </li>
           <li>
-            <Return currentuser={currentUser} />
+            <Link to="/driveways">Manage Driveways</Link>
           </li>
           <li>
             <button onClick={handleLogout}>Log out</button>
