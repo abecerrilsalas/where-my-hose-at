@@ -6,8 +6,6 @@ import { getFirestore, where, getDoc, getDocs, collection, query, updateDoc, doc
 import { useEffect, useState } from "react";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
-// import { getAnalytics } from "firebase/analytics";
-
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -29,7 +27,6 @@ export const app = initializeApp(firebaseConfig);
 export const db = getFirestore();
 const auth = getAuth();
 const storage = getStorage();
-// const analytics = getAnalytics(app);
 
 // custom hook to return currentUser object
 export function useAuth() {
@@ -67,17 +64,10 @@ export const getListings = async () => {
 };
 
 
-// get current rented driveway
+// get current rented driveway doc ID
 export const getCurrentDriveways = async (currentuser) => {
   const q = query(collection(db, "listings"), where("renter_id", "==", currentuser.uid));
   const drivewaysSnapshot = await getDocs(q);
-  const drivewaysList = drivewaysSnapshot.docs.map((doc) => doc.data());
-  return drivewaysList;
-};
-
-export const handleReturn = async () => {
-  const docRef = doc(db, "listings", "0CtwPj1wHLRdwOu0SGWE");
-  const payload = { available: true, renter_id: null}
-  updateDoc(docRef, payload);
-  console.log('Driveway has been returned')
+  const drivewaysList = drivewaysSnapshot.docs.map((doc) => doc.id);
+  return drivewaysList[0];
 };

@@ -1,68 +1,35 @@
 import "./Return.css";
 import React, {useEffect, useState} from "react";
+import { useAuth, getCurrentDriveways, db } from "../firebase-config";
+import { doc, updateDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import { useAuth, getCurrentDriveways, db, handleReturn } from "../firebase-config";
-import {
-  doc,
-  query,
-  where,
-  getDoc,
-  getDocs,
-  collection,
-  updateDoc,
-  onSnapshot,
-} from "firebase/firestore";
+
 
 function Return( {currentuser} ) {
-  const [driveways, setDriveways] = useState([""]);
-  // const navigate = useNavigate();
-  const currentUser = useAuth();  
+  const currentUser = useAuth();
+  const [rentedID, setRentedID] = useState([""]);
+  const navigate = useNavigate();
 
-  useEffect(
-    () =>
-      onSnapshot(collection(db, "listings"), (snapshot) =>
-        setDriveways(snapshot.docs.map((docs) => ({ ...doc.data(), id: doc.id })))
-      ),
-    []
-  );
+  useEffect(() => {
+    const loadDriveways = async (currentuser) => {
+      const rentedDriveway = await getCurrentDriveways(currentUser);
+      setRentedID(rentedDriveway);
+    };
+    loadDriveways();
+  }, [currentUser]);
 
-//   useEffect(() => {
-//     const loadDriveways = async (currentuser) => {
-//       const q = query(collection(db, "listings"), where("renter_id", "==", currentUser.uid));
-//       const querySnapshot = await getDocs(q);
-
-//       querySnapshot.forEach((doc) => {
-//         const drivewayID = doc.id
-//         const drivewayData = doc.data()
-//         console.log(drivewayData.renter_id)
-//         console.log(drivewayID)
-//         console.log(doc.id, " => ", doc.data());
-//       });
-//       return doc.id
-//     };
-//     const rentedID = loadDriveways();
-//     console.log(rentedID)
-// }, []);
-
-  // const handleReturn = async ( currentuser, rentedID ) => {
-    // const currentUser = useAuth();
-    // query to say listing where renterID==currentuserID;
-    // reset the renterID
-    // change availability to true
-    // console.log(currentUser.uid)
-    // const rentedID = loadDriveways()
-    // console.log(rentedID)
-  // }
-
-  
-
+  const handleReturn = async (rentedID) => {
+    const docRef = doc(db, "listings", rentedID);
+    const payload = { available: true, renter_id: null}
+    updateDoc(docRef, payload);
+    console.log('Driveway has been returned')
+    navigate("/")
+  };
 
   return (
     <div>
-      <button onClick={handleReturn}>Return Driveway</button>
-
-
-
+      <p>current {rentedID}</p>
+      <button onClick={() => handleReturn(rentedID)}>Return Driveway</button>
     </div>
   );
   
@@ -151,3 +118,31 @@ export default Return;
   //     console.log(doc.id, " => ", doc.data());
   //   });
   // };
+
+
+
+    // useEffect(
+  //   () =>
+  //     onSnapshot(collection(db, "listings"), (snapshot) =>
+  //       setDriveways(snapshot.docs.map((docs) => ({ ...doc.data(), id: doc.id })))
+  //     ),
+  //   []
+  // );
+
+//   useEffect(() => {
+//     const loadDriveways = async (currentuser) => {
+//       const q = query(collection(db, "listings"), where("renter_id", "==", currentUser.uid));
+//       const querySnapshot = await getDocs(q);
+//       querySnapshot.forEach((doc) => {
+
+//         const drivewayID = doc.id
+//         const drivewayData = doc.data()
+//         console.log(drivewayData.renter_id)
+//         console.log(drivewayID)
+
+//         return drivewayID;
+//       });
+//       let documentID = loadDriveways()
+//       console.log(documentID)
+//     };
+// }, []);
