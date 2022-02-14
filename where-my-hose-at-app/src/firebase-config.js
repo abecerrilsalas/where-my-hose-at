@@ -70,3 +70,8 @@ export const getRentedDriveway = async (currentuser) => {
   const drivewaysList = drivewaysSnapshot.docs.map((doc) => doc.id);
   return drivewaysList[0];
 };
+
+// check if current user is currently renting a driveway
+// export const isUserRenting = async (currentuser) => {
+
+// };

@@ -14,7 +14,7 @@ function Return( {currentuser} ) {
     const loadDriveways = async (currentuser) => {
       const rentedDriveway = await getRentedDriveway(currentUser);
       setRentedID(rentedDriveway);
-    };
+      };
     loadDriveways();
   }, [currentUser]);
 
@@ -26,16 +26,28 @@ function Return( {currentuser} ) {
     navigate("/home")
   };
 
+
   return (
     <div>
-      <p>{rentedID}</p>
-      <button onClick={() => handleReturn(rentedID)}>Return Driveway</button>
+      <button onClick={() => handleReturn(rentedID)}>{rentedID ? 'Checked one thing off my to-do list. Return driveway!' : 'You are not currently renting a driveway.' }</button>
     </div>
   );
   
 };
 
 export default Return;
+
+// {(() => {
+//   if (isUserRenting === false) {
+//     return ('You are not currently renting a driveway.');
+//   } else {
+//     return <button onClick={() => handleReturn(rentedID)}>Return Driveway {rentedID}</button>;
+//   }
+  
+// })()}
+
+ // <button onClick={() => handleReturn(rentedID)}>Return Driveway</button>
+
 
   // useEffect( () => {
   //   const loadCurrentDriveways = async () => {

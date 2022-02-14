@@ -8,7 +8,7 @@ function Driveways() {
     return (
         <div>
             <div>
-            <h1>You are currently renting:</h1>
+            <h1>Manage driveway rentals:</h1>
             <Return />
             </div>
 
