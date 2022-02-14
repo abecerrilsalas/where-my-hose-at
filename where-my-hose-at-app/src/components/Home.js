@@ -1,15 +1,12 @@
 import "./Home.css";
-import UpdateProfile from "./UpdateProfile";
 import LoginDisplay from "./LoginDisplay";
-import Return from "./Return";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../firebase-config";
 
 export default function Home() {
   const currentUser = useAuth();
-  // console.log(currentUser);
 
   let navigate = useNavigate();
 

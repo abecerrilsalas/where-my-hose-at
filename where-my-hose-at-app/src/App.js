@@ -12,7 +12,6 @@ import NewListing from "./components/NewListing";
 import UpdateProfile from "./components/UpdateProfile";
 import Driveways from "./components/Driveways"
 
-import { useAuth } from "./firebase-config";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {

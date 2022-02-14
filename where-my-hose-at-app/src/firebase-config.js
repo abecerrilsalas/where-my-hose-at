@@ -2,7 +2,7 @@
 
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged, updateProfile } from "firebase/auth";
-import { getFirestore, where, getDoc, getDocs, collection, query, updateDoc, doc } from "firebase/firestore";
+import { getFirestore, where, getDocs, collection, query } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
