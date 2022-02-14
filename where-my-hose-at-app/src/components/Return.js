@@ -4,11 +4,15 @@ import { useAuth, getRentedDriveway, db } from "../firebase-config";
 import { doc, updateDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Return( {currentuser} ) {
   const currentUser = useAuth();
   const [rentedID, setRentedID] = useState([""]);
   const navigate = useNavigate();
+
+  const notify = () => toast("Thanks for returning the driveway!");
 
   useEffect(() => {
     const loadDriveways = async (currentuser) => {
@@ -29,7 +33,8 @@ function Return( {currentuser} ) {
 
   return (
     <div>
-      <button onClick={() => handleReturn(rentedID)}>{rentedID ? 'Checked one thing off my to-do list. Return driveway!' : 'You are not currently renting a driveway.' }</button>
+      <button onClick={() => { handleReturn(rentedID); notify();} }>{rentedID ? 'Checked one thing off my to-do list. Return driveway!' : 'You are not currently renting a driveway.' }</button>
+    <ToastContainer />
     </div>
   );
   
