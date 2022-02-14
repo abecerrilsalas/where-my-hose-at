@@ -11,10 +11,14 @@ const UserDisplayLogin = () => {
   const currentUser = useAuth();
   let authToken = sessionStorage.getItem("Auth Token");
 
+  const handlePageChange = () => {
+    window.location.href = "/home";
+  };
+
   if (currentUser && authToken) {
     // return <p>&nbsp;{currentUser.displayName}</p>;
     return <p>&nbsp;{currentUser.displayName}
-    <img src={currentUser.photoURL} alt="avatar" className="avatar" /></p>;
+    <img src={currentUser.photoURL} alt="avatar" className="avatar" onClick={handlePageChange}/></p>;
   } else {
     return (
       <p>
