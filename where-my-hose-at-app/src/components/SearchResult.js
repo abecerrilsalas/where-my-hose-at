@@ -1,19 +1,20 @@
 import React from "react";
 import "./SearchResult.css";
-// import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-// import StarIcon from "@mui/icons-material/Star";
-// import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import EventBusyIcon from '@mui/icons-material/EventBusy';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function SearchResult({ image, title, description, available, handleBooking}) {
+
+  const notify = () => toast("You are now renting " + title + "!");
 
   return (
     <div className="searchResult">
       <img src={image} alt="" />
-      {/* <h3>{available}</h3> */}
-      {/* <FavoriteBorderIcon className="searchResult__heart" /> */}
-      <EventAvailableIcon onClick={handleBooking} className="searchResult__car"/>
+      <EventAvailableIcon onClick={() => { handleBooking(); notify();}}  className="searchResult__car"/>
+      <ToastContainer />
 
       <div className="searchResult__info">
       
@@ -30,13 +31,3 @@ function SearchResult({ image, title, description, available, handleBooking}) {
 }
 
 export default SearchResult;
-
-
-        {/* <div className="searchResult__infoBottom">
-          { <div className="searchResult__stars">
-            <StarIcon className="searchResult__star" />
-            <p>
-              <strong>USE THIS DRIVEWAY</strong>
-            </p>
-          </div>}
-        </div> */}

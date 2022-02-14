@@ -12,7 +12,6 @@ function SearchPage() {
   
   const navigate = useNavigate();
   const [listings, setListings] = useState([])
-  const [clickedListing, setClickedListing] = useState("")
 
   useEffect(() => {
     const loadListings = async () => {
@@ -34,10 +33,10 @@ function SearchPage() {
           available: false,
           renter_id: currentUser.uid
         })
-        console.log("You got it!");
+        console.log("Now renting " + card.title + "!");
         navigate("/home");
       } else {
-          console.log("Sorry, driveway is occupied.");
+          console.log("Sorry, " + card.title + "is occupied.");
       }
     }
   
