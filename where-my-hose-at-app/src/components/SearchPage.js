@@ -11,9 +11,8 @@ function SearchPage() {
   const currentUser = useAuth();
   
   const navigate = useNavigate();
-  const [clickedListing, setClickedListing] = useState("")
-  
   const [listings, setListings] = useState([])
+  const [clickedListing, setClickedListing] = useState("")
 
   useEffect(() => {
     const loadListings = async () => {
@@ -28,8 +27,8 @@ function SearchPage() {
   const getListingCards = listings.map((card) => {
 
     const handleBooking = () => {
-      const listingsRef = doc(db, "listings", "0CtwPj1wHLRdwOu0SGWE");
-      console.log(card.available);
+      const listingsRef = doc(db, "listings", card.id);
+      // console.log(card.available);
       if (card.available == true) {
           updateDoc(listingsRef, {
           available: false,
@@ -38,9 +37,6 @@ function SearchPage() {
         console.log("You got it!");
         navigate("/home");
       } else {
-          // updateDoc(listingsRef, {
-          // available: true
-          // });
           console.log("Sorry, driveway is occupied.");
       }
     }
@@ -52,6 +48,7 @@ function SearchPage() {
         description={card.description}
         available={card.available}
         handleBooking={handleBooking}
+        key={card.id}
       />
     );
   });

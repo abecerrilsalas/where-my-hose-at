@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 import Landing from "./components/Landing";
@@ -10,11 +10,9 @@ import Form from "./components/common/Form";
 import Home from "./components/Home";
 import NewListing from "./components/NewListing";
 import UpdateProfile from "./components/UpdateProfile";
-import Home2 from "./components/Home2";
-import Return from "./components/Return";
+import Driveways from "./components/Driveways"
 
-import { app, db, useAuth } from "./firebase-config";
-import { collection, addDoc } from "firebase/firestore";
+import { useAuth } from "./firebase-config";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
@@ -117,8 +115,7 @@ function App() {
             />
           }
         />
-        <Route path="/home2" element={<Home2 />} />
-        <Route path="/return" element={<Return />} />
+        <Route path="/driveways" element={<Driveways />} />
         <Route path="/newlisting" element={<NewListing />} />
         <Route path="/updateprofile" element={<UpdateProfile />} />
         <Route path="/search" element={<SearchPage />} />

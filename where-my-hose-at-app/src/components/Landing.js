@@ -25,6 +25,7 @@ function Landing() {
         image={card.image}
         title={card.title}
         description={card.description}
+        key={card.id}
       />
     );
   });
@@ -34,7 +35,7 @@ function Landing() {
 
       <Banner />
       <div className="landing__section">
-        {getListingCards}
+          {getListingCards}
       </div>
     </div>
   );

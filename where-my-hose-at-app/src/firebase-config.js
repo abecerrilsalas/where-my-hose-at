@@ -2,11 +2,9 @@
 
 import { initializeApp } from "firebase/app";
 import { getAuth, onAuthStateChanged, updateProfile } from "firebase/auth";
-import { getFirestore, where, getDoc, getDocs, collection, query } from "firebase/firestore";
+import { getFirestore, where, getDoc, getDocs, collection, query, updateDoc, doc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-
-// import { getAnalytics } from "firebase/analytics";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -29,7 +27,6 @@ export const app = initializeApp(firebaseConfig);
 export const db = getFirestore();
 const auth = getAuth();
 const storage = getStorage();
-// const analytics = getAnalytics(app);
 
 // custom hook to return currentUser object
 export function useAuth() {
@@ -62,15 +59,19 @@ export async function upload(file, currentUser, setLoading){
 // get listings
 export const getListings = async () => {
   const listingsSnapshot = await getDocs(collection(db, "listings"));
-  const listingsList = listingsSnapshot.docs.map((doc) => doc.data());
+  const listingsList = listingsSnapshot.docs.map((doc) => {return {...doc.data(), id: doc.id} });
   return listingsList;
 };
 
-
-// get current rented driveway
-export const getCurrentDriveways = async (currentUser) => {
-  const q = query(collection(db, "listings"), where("renter_id", "==", currentUser.uid));
+// get current rented driveway doc ID
+export const getRentedDriveway = async (currentuser) => {
+  const q = query(collection(db, "listings"), where("renter_id", "==", currentuser.uid));
   const drivewaysSnapshot = await getDocs(q);
-  const drivewaysList = drivewaysSnapshot.docs.map((doc) => doc.data());
-  return drivewaysList;
+  const drivewaysList = drivewaysSnapshot.docs.map((doc) => doc.id);
+  return drivewaysList[0];
 };
+
+// check if current user is currently renting a driveway
+// export const isUserRenting = async (currentuser) => {
+
+// };

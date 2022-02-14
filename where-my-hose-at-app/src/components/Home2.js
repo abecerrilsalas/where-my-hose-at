@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import { db } from "../firebase-config";
 import { getAuth, updateProfile } from "firebase/auth";
-import { useAuth, upload, db, getCurrentDriveways } from "../firebase-config";
+import { useAuth, upload, db, getRentedDriveway } from "../firebase-config";
 import {
   doc,
   query,
@@ -99,7 +99,7 @@ export default function Home2() {
 
   useEffect(() => {
     const loadCurrentDriveways = async () => {
-      const userDriveways = await getCurrentDriveways(currentUser);
+      const userDriveways = await getRentedDriveway(currentUser);
       setDriveways(userDriveways);
     };
     loadCurrentDriveways();
@@ -129,7 +129,7 @@ export default function Home2() {
 
   useEffect(() => {
     const loadCurrentDriveways = async () => {
-      const userDriveways = await getCurrentDriveways(currentUser);
+      const userDriveways = await getRentedDriveway(currentUser);
       setDriveways(userDriveways);
     };
     loadCurrentDriveways();
