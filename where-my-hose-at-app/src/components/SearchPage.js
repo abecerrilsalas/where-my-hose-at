@@ -55,7 +55,7 @@ function SearchPage() {
   return (
     <div className="searchPage">
       <div className="searchPage__info">
-        <p>62 driveways • 28 January to 31 January</p>
+        <p>6 driveways • 14 February to 18 February</p>
         <h1>Driveways nearby</h1>
         <Button variant="outlined">Tools included</Button>
         <Button variant="outlined">Hose available</Button>

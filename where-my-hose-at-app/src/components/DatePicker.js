@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import "./DatePicker.css";
 import "react-date-range/dist/styles.css";
-// main style file
 import "react-date-range/dist/theme/default.css";
-// theme css file
 import { DateRangePicker } from "react-date-range";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
