@@ -21,22 +21,9 @@ import {
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 
-// const usersCollection = collection(db, "users");
-
-// async function addNewDoc() {
-//   const newDoc = await addDoc(usersCollection, {
-//     firstName: "king",
-//     lastName: "arthur",
-//   });
-//   console.log(`YOU did it! ${newDoc.path}`);
-// }
-
-// addNewDoc();
-
 function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const currentUser = useAuth();
 
   let navigate = useNavigate();
   const handleAction = (id) => {
@@ -75,16 +62,6 @@ function App() {
         });
     }
   };
-
-  // maybe we don't need this logic because we want our users to be able to use the site and not have to go /home all the time?
-
-  // useEffect(() => {
-  //   let authToken = sessionStorage.getItem("Auth Token");
-
-  //   if (authToken) {
-  //     navigate("/home");
-  //   }
-  // }, [navigate]);
 
   return (
     <div className="app">
