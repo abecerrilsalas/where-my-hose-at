@@ -12,9 +12,9 @@ const UserDisplayLogin = () => {
   let authToken = sessionStorage.getItem("Auth Token");
 
   if (currentUser && authToken) {
-    return <p>&nbsp;{currentUser.displayName}</p>;
-    // return <p>&nbsp;{currentUser.displayName}
-    // <img src={currentUser.photoURL} alt="avatar" className="avatar" /></p>;
+    // return <p>&nbsp;{currentUser.displayName}</p>;
+    return <p>&nbsp;{currentUser.displayName}
+    <img src={currentUser.photoURL} alt="avatar" className="avatar" /></p>;
   } else {
     return (
       <p>
