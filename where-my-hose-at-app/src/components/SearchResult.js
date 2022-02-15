@@ -8,12 +8,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function SearchResult({ image, title, description, available, handleBooking}) {
 
-  const notify = () => toast("You are now renting " + title + "!");
+  const notifySuccess = () => toast("You are now renting " + title + "!");
+  const notifyFail = () => toast(title + " is currently occupied. Please request a different driveway.");
 
   return (
     <div className="searchResult">
       <img src={image} alt="" />
-      <EventAvailableIcon onClick={() => { handleBooking(); notify();}}  className="searchResult__car"/>
+      {available ? <EventAvailableIcon onClick={() => { handleBooking(); notifySuccess();}}  className="searchResult__car"/> :
+      <EventBusyIcon onClick={notifyFail} className="searchResult__car" />}
       <ToastContainer />
 
       <div className="searchResult__info">
