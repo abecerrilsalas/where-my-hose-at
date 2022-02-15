@@ -63,9 +63,9 @@ export default function NewListing () {
     };
     
     return (
-        <div>
-            <h2>List your driveway:</h2>
-            <h3>(Become everyone's favorite neighbor!)</h3>
+        <div className="newlisting__content">
+            <h2 className="newlisting__content">List your driveway:</h2>
+            <h3 className="newlisting__content">(Become everyone's favorite neighbor!)</h3>
             <div className="form__content">
                 <form onSubmit={onFormSubmit}>
                     <div>

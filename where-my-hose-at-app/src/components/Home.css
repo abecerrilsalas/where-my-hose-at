@@ -15,10 +15,26 @@
 
 .avatar {
     vertical-align: middle;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     border-width: 1px;
     border-color: gray;
     border-style: outset;
+}
+
+/* .button {
+    background-color: #ff7779;
+    color: white;
+    text-transform: inherit;
+    font-weight: 600;
+}
+
+.button:hover {
+    background-color: white;
+    color: #ff7779;
+} */
+
+li {
+    list-style-type: '✨ ';
 }

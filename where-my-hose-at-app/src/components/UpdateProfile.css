@@ -1,0 +1,11 @@
+h2 {
+    text-align: center;
+}
+
+.profile__name {
+    padding: 20px;
+}
+
+.profile__image {
+    padding: 20px;
+}

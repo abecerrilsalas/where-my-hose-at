@@ -28,7 +28,7 @@ function UpdateProfile( {currentuser}) {
       .catch((error) => {
         console.log("an error occurred");
       });
-      navigate("/home");
+      navigate("/updateprofile");
   };
 
   // logic for uploading a profile picture
@@ -49,21 +49,23 @@ function UpdateProfile( {currentuser}) {
   }, [currentUser]);
 
   return (
-    <div>
-      <div>
-      Hello, <LoginDisplay />!
+    <div className="profile__contents">
+      <div className="profile__name">
+        <h2 className="profile__greeting">{currentUser && currentUser.displayName != null ? '✨ ' + currentUser.displayName + '\'s profile ✨' : ''}</h2>
+        <h3>{currentUser && currentUser.displayName != null ? 'current display name: ' + currentUser.displayName : 'hey, new user! press button below to set your name'}</h3>
+        <button onClick={handleNewName}>Add/Change Name</button>
       </div>
-      <div>
-      <button onClick={handleNewName}>Edit Name</button>
-      </div>
-      <div>
+
+      <div className="profile__image">
+        <h3>upload/update photo</h3>
         <input type="file" onChange={handleChange} />
         <button disabled={loading || !photo} onClick={handleClick}>
           Upload
         </button>
-        <img src={photoURL} alt="avatar" className="avatar" />
+        {/* <img src={photoURL} alt="avatar" className="avatar" /> */}
         </div>
-      <div>
+
+      <div className="homelink">
         <Link to="/home">…go back</Link>
       </div>
     </div>

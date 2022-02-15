@@ -1,4 +1,8 @@
-h2, h3 {
+.newlisting__content > h2 {
+    text-align: center;
+}
+
+.newlisting__content > h3 {
     text-align: center;
 }
 

@@ -17,8 +17,8 @@ const UserDisplayLogin = () => {
 
   if (currentUser && authToken) {
     // return <p>&nbsp;{currentUser.displayName}</p>;
-    return <p>&nbsp;{currentUser.displayName}
-    <img src={currentUser.photoURL} alt="avatar" className="avatar" onClick={handlePageChange}/></p>;
+    return <p>&nbsp;{currentUser.displayName != null ? currentUser.displayName : "new user"}
+    <img src={currentUser.photoURL != null ? currentUser.photoURL : "https://www.veryicon.com/download/png/business/cloud-desktop/user-138?s=256"} alt="" className="avatar" onClick={handlePageChange}/></p>;
   } else {
     return (
       <p>
