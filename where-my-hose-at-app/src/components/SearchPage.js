@@ -21,10 +21,9 @@ function SearchPage() {
     loadListings();
   }, []);
   
-  console.log(listings)
+  const countListings = listings.length;
 
   const getListingCards = listings.map((card) => {
-
     const handleBooking = () => {
       const listingsRef = doc(db, "listings", card.id);
       // console.log(card.available);
@@ -55,7 +54,7 @@ function SearchPage() {
   return (
     <div className="searchPage">
       <div className="searchPage__info">
-        <p>6 driveways • 14 February to 18 February</p>
+        <p>{countListings} driveways • 14 February to 18 February</p>
         <h1>Driveways nearby</h1>
         <Button variant="outlined">Tools included</Button>
         <Button variant="outlined">Hose available</Button>
