@@ -33,7 +33,7 @@ function Return( {currentuser} ) {
 
   return (
     <div>
-      <button onClick={() => { handleReturn(rentedID); notify();} }>{rentedID ? 'Checked one thing off my to-do list. Return driveway!' : 'You are not currently renting a driveway.' }</button>
+      <button onClick={() => { handleReturn(rentedID); notify();} }>{rentedID ? 'Return driveway' : 'You are not currently renting a driveway.' }</button>
     <ToastContainer />
     </div>
   );

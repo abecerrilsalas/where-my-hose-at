@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 function SearchResult({ image, title, description, available, handleBooking}) {
 
   const notifySuccess = () => toast("You are now renting " + title + "!");
-  const notifyFail = () => toast(title + " is currently occupied. Please request a different driveway.");
+  const notifyFail = () => toast(title + " is occupied. Please request a different driveway.");
 
   return (
     <div className="searchResult">
