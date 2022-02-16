@@ -4,13 +4,16 @@
 }
 
 .home__header {
-    font-size: 25px;
+    font-size: 35px;
     display: flex;
+    margin-top: 20px;
+    width: 50vw;
 }
 
 .home__contents {
     font-size: 16px;
     display: flex;
+
 }
 
 .avatar {
@@ -23,18 +26,18 @@
     border-style: outset;
 }
 
-/* .button {
-    background-color: #ff7779;
-    color: white;
-    text-transform: inherit;
-    font-weight: 600;
-}
-
-.button:hover {
-    background-color: white;
-    color: #ff7779;
-} */
-
 li {
     list-style-type: '✨ ';
+}
+
+a {
+    text-decoration: none;
+}
+
+a:visited {
+    color: red;
+}
+
+a:hover {
+    color: black;
 }

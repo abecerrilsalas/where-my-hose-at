@@ -7,6 +7,8 @@
     background-color: white;
     z-index: 100;
     width: 100%;
+    padding-bottom: 5px;
+    padding-top: 5px;
 }
 
 .header__icon {
@@ -39,7 +41,9 @@
     justify-content: space-evenly;
     width: 15vw;
     margin-right: 80px;
+    font-weight: bold;
 }
+
 
 .header__right > a {
     text-decoration: none;

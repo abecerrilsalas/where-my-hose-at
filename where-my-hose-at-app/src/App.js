@@ -11,6 +11,7 @@ import Home from "./components/Home";
 import NewListing from "./components/NewListing";
 import UpdateProfile from "./components/UpdateProfile";
 import Driveways from "./components/Driveways"
+import Presentation from "./components/Presentation"
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -91,6 +92,7 @@ function App() {
             />
           }
         />
+        <Route path="/presentation" element={<Presentation />} />
         <Route path="/driveways" element={<Driveways />} />
         <Route path="/newlisting" element={<NewListing />} />
         <Route path="/updateprofile" element={<UpdateProfile />} />

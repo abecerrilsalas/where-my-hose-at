@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 
 function Header() {
+  if (window.location.pathname === '/presentation') return null;
   return (
     <div className="header">
       <Link to="/">

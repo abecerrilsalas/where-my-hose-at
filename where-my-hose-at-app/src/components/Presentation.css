@@ -1,0 +1,52 @@
+.ext_container {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+section.ext_container {
+    margin: 0;
+    display: block;
+    width: 100%;
+    height: 100vh;
+}
+
+div.int_element {
+    scroll-snap-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+div.int_element:nth-child(odd) {
+    background: #EF210D;
+    color: white;
+}
+
+div.int_element:nth-child(even) {
+    background: white;
+    color: #EF210D;
+
+}
+
+.int_element > p {
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+    line-height: 1.25;
+}
+
+.almaTanya {
+    margin-top: 15px;
+    border-radius: 15px;
+}
+

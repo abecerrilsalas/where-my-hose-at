@@ -1,9 +1,8 @@
 import "./UpdateProfile.css";
-import LoginDisplay from "./LoginDisplay";
 
 import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { useAuth, upload, db } from "../firebase-config";
+import { useAuth, upload } from "../firebase-config";
 import { updateProfile } from "firebase/auth";
 
 
@@ -62,7 +61,6 @@ function UpdateProfile( {currentuser}) {
         <button disabled={loading || !photo} onClick={handleClick}>
           Upload
         </button>
-        {/* <img src={photoURL} alt="avatar" className="avatar" /> */}
         </div>
 
       <div className="homelink">
